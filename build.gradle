@@ -1,0 +1,29 @@
+plugins {
+    id "io.spring.dependency-management" version "1.0.2.RELEASE"
+}
+
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.jboss.arquillian:arquillian-bom:1.1.13.Final'
+    }
+}
+
+dependencies {
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.jboss.arquillian.junit:arquillian-junit-standalone'
+    testCompile 'org.arquillian.cube:arquillian-cube-docker:1.3.2'
+}
+
+test {
+    maxParallelForks = 2
+    testLogging.showStandardStreams = true
+}
